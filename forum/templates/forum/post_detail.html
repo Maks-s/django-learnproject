@@ -1,0 +1,12 @@
+{% extends 'forum/base.html' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">{{ object.title }}</li>
+{% endblock %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>{{ object.message }}</p>
+{% endblock %}

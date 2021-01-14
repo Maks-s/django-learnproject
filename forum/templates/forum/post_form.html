@@ -1,0 +1,15 @@
+{% extends 'forum/base.html' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">New post</li>
+{% endblock %}
+
+
+{% block content %}
+<form method="POST" class="col">{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit" class="btn btn-primary">Post</button>
+</form>
+{% endblock %}

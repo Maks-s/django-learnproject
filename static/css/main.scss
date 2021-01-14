@@ -1,0 +1,100 @@
+/* In real code, I would have used bootstrap's SASS */
+
+html, body {
+	background: #111;
+	color: #DDD;
+}
+
+.navbar, .navbar-brand {
+	height: 60px;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar-brand > img {
+	height: 60px;
+	max-width: 100%;
+}
+
+main.container {
+	padding: 0;
+	margin-top: 20px;
+}
+
+.post-list {
+	list-style: none;
+	padding: 0;
+}
+
+.post-list .post {
+	display: block;
+	border: 1px solid #444;
+	border-top: 0;
+	padding: 10px;
+}
+
+.post-list .post:first-child {
+	border-top: 1px solid #444;
+}
+
+.post-list .post .author {
+	color: #AAA;
+}
+
+.post-list .post .date {
+	color: #AAA;
+	margin-left: 0.3em;
+}
+
+.post-list .post .date::before {
+	content: "\00B7\20";
+}
+
+a {
+	color: lightgrey;
+	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+}
+
+.form-control, .form-control:focus {
+	background: #1A1A1A;
+	border: 1px solid grey;
+	color: #DDD;
+	box-shadow: none;
+}
+
+textarea {
+	resize: both;
+}
+
+nav.breadcrumb {
+	margin-top: 10px;
+	border: 1px solid #444;
+	background: #1A1A1A;
+	border-radius: 2px;
+	padding: 5px 10px;
+}
+
+nav.breadcrumb > ol {
+	margin: 0;
+	margin-bottom: 0.1em;
+}
+
+.breadcrumb-item a {
+	text-decoration: underline;
+}
+
+.pagination {
+	margin: auto;
+	margin-top: 1em;
+	justify-content: center;
+}
+
+@media (max-width: 360px) {
+	.navbar-brand {
+		display: none;
+	}
+}
