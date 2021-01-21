@@ -1,0 +1,27 @@
+$body-bg: #111;
+$body-color: #DDD;
+
+$link-color: lightgrey;
+$link-decoration: none;
+
+$navbar-padding-x: 0;
+$navbar-padding-y: 0;
+$navbar-brand-padding-x: 0;
+$navbar-brand-padding-y: 0;
+$navbar-brand-height: 60px;
+$navbar-brand-margin-end: 0;
+
+$pagination-bg: #222;
+$pagination-border-color: #666;
+$pagination-hover-bg: #2A2A2A;
+$pagination-hover-border-color: lighten($pagination-border-color, 5%);
+$pagination-focus-bg: $pagination-hover-bg;
+
+$input-btn-focus-box-shadow: none;
+$input-bg: #1A1A1A;
+$input-border-color: grey;
+
+$breadcrumb-bg: #1A1A1A;
+$breadcrumb-border-radius: 2px;
+$breadcrumb-padding-x: 10px;
+$breadcrumb-padding-y: 5px;

@@ -1,0 +1,18 @@
+.post-list {
+	list-style: none;
+
+    .post {
+        border: 1px solid #444;
+        border-top: 0;
+
+        &:first-child {
+            border-top: 1px solid #444;
+        }
+
+        .date {
+            &::before {
+                content: "\00B7\20";
+            }
+        }
+    }
+}

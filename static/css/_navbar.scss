@@ -1,0 +1,11 @@
+nav.breadcrumb {
+    border: 1px solid #444;
+
+    .breadcrumb-item > a {
+        text-decoration: underline;
+    }
+}
+
+.navbar-brand > img {
+    height: 60px;
+}
