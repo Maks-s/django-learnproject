@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.user.username }}{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{% url 'userprofile:detail' object.id %}">{{ object.user.username }}</a>
+</li>
+<li class="breadcrumb-item active">Edit profile</li>
+{% endblock %}
+
+{% block content %}
+<form method="POST" class="col">{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit" class="btn btn-primary">Apply changes</button>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}title{% endblock %}</title>
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'css/main.scss' %}" rel="stylesheet">
+    {% endcompress %}
+
+    {% compress js %}
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    {% endcompress %}
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <span class="navbar-brand">
+                <img src="{% static 'img/django.png' %}" alt="DJ" class="d-inline-block mw-100">
+            </span>
+            <div class="container-fluid">
+                <ul class="navbar-nav mb-1">
+                    <li class="nav-item">
+                        <a href="{% url 'forum:post-list' %}" class="nav-link {% if '/profile/' not in request.path %}active{% endif %}">Home</a>
+                    </li>
+                    {% if request.user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Administration</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <span>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'userprofile:detail' request.user.profile.id %}" class="nav-link d-inline mb-1 {% if '/profile/' in request.path %}text-white{% endif %}">Profile</a>
+                        <form class="nav-link d-inline mb-1" method="POST" action="{% url 'userprofile:logout' %}">{% csrf_token %}
+                            <a href="{% url 'userprofile:logout' %}" class="link_as_form">Logout</a>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'userprofile:login' %}?next={{ request.path }}" class="nav-link mb-1">Login</a>
+                    {% endif %}
+                </span>
+            </div>
+        </nav>
+
+        <nav class="breadcrumb mt-3">
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item"><a href="{% url 'forum:post-list' %}">Forum</a></li>
+                {% block breadcrumb %}
+                {% endblock %}
+            </ol>
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>

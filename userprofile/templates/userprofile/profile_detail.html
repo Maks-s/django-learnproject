@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.user.username }}{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">{{ object.user.username }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="container bg-dark border border-dark p-3 pt-2">
+    <h1 class="border-bottom pb-2">{{ object.user.username|capfirst }}</h1>
+    <p>{{ object.bio|default:'No biography ! Modify it with the button below' }}</p>
+    {% if request.user.is_authenticated and request.user.profile.id == object.id or request.user.is_superuser %}
+        <a href="{% url 'userprofile:edit' object.user.profile.id %}" class="btn btn-primary">Modify biography</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Login</li>
+{% endblock %}
+
+{% block content %}
+<form method="POST" class="col">{% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{{ field.label_suffix|default:':' }}</label>
+            {% if field.errors %}
+                <ul class="text-danger">
+                    {% for err in field.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ field }}
+            {{ field.help_text }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a href="{% url 'userprofile:register' %}" class="m-3">Register</a>
+</form>
+{% endblock %}
