@@ -6,6 +6,12 @@ nav.breadcrumb {
     }
 }
 
-.navbar-brand > img {
-    height: 60px;
+.navbar {
+    .navbar-toggler {
+        margin-right: 0.5em;
+    }
+
+    .navbar-brand > img {
+        height: 60px;
+    }
 }

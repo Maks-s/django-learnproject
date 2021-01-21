@@ -5,9 +5,3 @@
 
 @import 'navbar';
 @import 'posts';
-
-@media (max-width: 360px) {
-    .navbar-brand {
-        display: none;
-    }
-}
