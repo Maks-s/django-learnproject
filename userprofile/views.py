@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.middleware.csrf import CsrfViewMiddleware
+from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
@@ -14,6 +15,12 @@ class ProfileRegisterView(CreateView):
     model = User
     form_class = ProfileRegisterForm
     template_name = 'userprofile/register.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse('userprofile:detail', args=(request.user.profile.id,)))
+
+        return super(ProfileRegisterView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         self.form = form
