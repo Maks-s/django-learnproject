@@ -9,9 +9,6 @@ class PostListView(ListView):
     paginate_by = 2
     queryset = Post.objects.order_by('-created_date')
 
-    def get(self, request):
-        return super().get(self, request)
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
