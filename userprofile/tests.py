@@ -19,15 +19,13 @@ class TestUserprofile(TestCase):
         cls.url_logout = reverse('userprofile:logout')
         cls.url_edit_bob = reverse('userprofile:edit', args=(cls.user_bob.profile.id,))
 
+        return super(TestUserprofile, cls).setUpTestData()
+
     def assertGetHTTPCode(self, url, code=200):
         return self.assertEqual(self.client.get(url).status_code, code)
 
     def assertPostHTTPCode(self, url, data={}, code=200):
         return self.assertEqual(self.client.post(url, data).status_code, code)
-
-    def test_profile_model(self):
-        self.assertIsInstance(self.user_bob.profile, Profile)
-        self.assertIsInstance(self.superuser.profile, Profile)
 
 # Generic tests
 class TestTemplates(TestUserprofile):
@@ -36,6 +34,11 @@ class TestTemplates(TestUserprofile):
         self.assertGetHTTPCode(self.url_login, 200)
         self.assertGetHTTPCode(self.url_detail, 200)
         self.assertGetHTTPCode(self.url_logout, 302)
+
+class TestModels(TestUserprofile):
+    def test_profile_model(self):
+        self.assertIsInstance(self.user_bob.profile, Profile)
+        self.assertIsInstance(self.superuser.profile, Profile)
 
 # Views tests
 class TestProfileRegister(TestUserprofile):
@@ -62,7 +65,7 @@ class TestProfileRegister(TestUserprofile):
         self.assertPostHTTPCode(self.url_register, data, 200)
 
         with self.assertRaises(User.DoesNotExist):
-            User.objects.get(username='Test')
+            User.objects.get(username=data['username'])
 
 class TestProfileLogin(TestUserprofile):
     @classmethod

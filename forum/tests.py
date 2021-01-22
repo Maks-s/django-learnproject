@@ -9,8 +9,6 @@ class TestForum(TestCase):
     # Global data used across all tests
     @classmethod
     def setUpTestData(cls):
-        super(TestForum, cls).setUpTestData()
-
         cls.user = User.objects.create_user('Bob')
         cls.superuser = User.objects.create_superuser('root')
 
@@ -23,6 +21,8 @@ class TestForum(TestCase):
         cls.url_post_list = reverse('forum:post-list')
         cls.url_post_create = reverse('forum:post-create')
         cls.url_post_detail = reverse('forum:post-detail', args=(cls.post.id,))
+
+        return super(TestForum, cls).setUpTestData()
 
     def assertGetHTTPCode(self, url, code=200):
         return self.assertEqual(self.client.get(url).status_code, code)
